@@ -1,7 +1,7 @@
-package com.github.jsbeckr.tailwindidea;
+package com.github.jsbeckr.tailwindidea
 
-import java.util.*
+import java.util.EventListener
 
-interface TailwindConfigChangedListener: EventListener {
-    fun tailwindConfigChanged()
+interface TailwindConfigChangedListener : EventListener {
+  fun tailwindConfigChanged()
 }

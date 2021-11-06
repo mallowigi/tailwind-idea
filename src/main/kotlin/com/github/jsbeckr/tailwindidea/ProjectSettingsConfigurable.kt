@@ -7,42 +7,42 @@ import com.intellij.openapi.project.Project
 import javax.swing.JComponent
 
 class ProjectSettingsConfigurable(project: Project) : Configurable {
-    private var mySettingsComponent: ProjectSettingsComponent? = null
-    private var mProject: Project = project
+  private var mySettingsComponent: ProjectSettingsComponent? = null
+  private var mProject: Project = project
 
-    override fun getDisplayName(): String? {
-        return "Tailwind Settings"
-    }
+  override fun getDisplayName(): String? {
+    return "Tailwind Settings"
+  }
 
-    override fun getPreferredFocusedComponent(): JComponent {
-        return mySettingsComponent!!.preferredFocusedComponent
-    }
+  override fun getPreferredFocusedComponent(): JComponent {
+    return mySettingsComponent!!.preferredFocusedComponent
+  }
 
-    override fun createComponent(): JComponent? {
-        mySettingsComponent = ProjectSettingsComponent(mProject)
-        return mySettingsComponent!!.panel
-    }
+  override fun createComponent(): JComponent? {
+    mySettingsComponent = ProjectSettingsComponent(mProject)
+    return mySettingsComponent!!.panel
+  }
 
-    override fun isModified(): Boolean {
-        val settings = mProject.service<ProjectSettingsState>()
-        val modified = mySettingsComponent!!.mainCssPath != settings.mainCssPath
-        return modified
-    }
+  override fun isModified(): Boolean {
+    val settings = mProject.service<ProjectSettingsState>()
+    val modified = mySettingsComponent!!.mainCssPath != settings.mainCssPath
+    return modified
+  }
 
-    override fun apply() {
-        val settings = mProject.service<ProjectSettingsState>()
-        settings.mainCssPath = mySettingsComponent!!.mainCssPath
+  override fun apply() {
+    val settings = mProject.service<ProjectSettingsState>()
+    settings.mainCssPath = mySettingsComponent!!.mainCssPath
 
-        val publisher = mProject.messageBus.syncPublisher(ActionTopics.TAILWIND_CONFIG_CHANGED)
-        publisher.tailwindConfigChanged()
-    }
+    val publisher = mProject.messageBus.syncPublisher(ActionTopics.TAILWIND_CONFIG_CHANGED)
+    publisher.tailwindConfigChanged()
+  }
 
-    override fun reset() {
-        val settings = mProject.service<ProjectSettingsState>()
-        mySettingsComponent!!.mainCssPath = settings.mainCssPath
-    }
+  override fun reset() {
+    val settings = mProject.service<ProjectSettingsState>()
+    mySettingsComponent!!.mainCssPath = settings.mainCssPath
+  }
 
-    override fun disposeUIResources() {
-        mySettingsComponent = null
-    }
+  override fun disposeUIResources() {
+    mySettingsComponent = null
+  }
 }
