@@ -21,7 +21,6 @@ async function test() {
   const cwd = process.argv[4];
   const nodeModulesPath = `${cwd}/node_modules`;
 
-  console.log(nodeModulesPath);
   const postcss = importFrom(nodeModulesPath, './postcss');
   const tailwindcss = importFrom(nodeModulesPath, './tailwindcss');
 

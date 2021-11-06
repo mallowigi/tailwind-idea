@@ -5,7 +5,7 @@ import com.github.jsbeckr.tailwindidea.services.TailwindService
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 
-class MyTailwindConfigChangedListener(val project: Project) : TailwindConfigChangedListener {
+class MyTailwindConfigChangedListener(private val project: Project) : TailwindConfigChangedListener {
   override fun tailwindConfigChanged() {
     val tailwindService = project.service<TailwindService>()
     tailwindService.generateTailwindData()

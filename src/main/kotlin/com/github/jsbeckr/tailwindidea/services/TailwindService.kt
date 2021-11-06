@@ -37,9 +37,9 @@ class TailwindService(val project: Project) {
 
     // update tailwindclasses if tailwind settingsclass changes
     project.messageBus.connect().subscribe(VirtualFileManager.VFS_CHANGES, object : BulkFileListener {
-      override fun after(@NotNull events: List<VFileEvent?>) {
+      override fun after(@NotNull events: List<VFileEvent>) {
         events.forEach {
-          if (it != null && it.file != null) {
+          if (it.file != null) {
             val file = it.file as VirtualFile
             if (ProjectFileIndex.getInstance(project).isInContent(file)) {
               val settingsState = project.service<ProjectSettingsState>()
@@ -68,12 +68,11 @@ class TailwindService(val project: Project) {
     ApplicationManager.getApplication().executeOnPooledThread {
       val settingsState = project.service<ProjectSettingsState>()
       try {
-        // TODO: error handling maybe make it possible to select nodejs interpreter?
         val nodePath =
           NodeJsLocalInterpreterManager.getInstance().interpreters[0].interpreterSystemDependentPath
 
         val command =
-          "$nodePath#$generateTailwind#${settingsState.mainCssPath}#${tmpFile.absolutePath}#$workingDir"
+          "${nodePath}#${generateTailwind}#${settingsState.mainCssPath}#${tmpFile.absolutePath}#$workingDir"
 
         command.runCommand(
           File(
@@ -82,8 +81,9 @@ class TailwindService(val project: Project) {
         )
 
         val jsonNode = ObjectMapper().readTree(tmpFile)
-        jsonNode["classNames"].fields().forEach { field ->
-          val restParts = field.key.split(":").toMutableList()
+
+        jsonNode["classNames"].fields().forEach { (field) ->
+          val restParts = field.split(":").toMutableList()
           val firstPart = restParts.removeAt(0)
           addTailwindClass(tailwindClasses, firstPart, null, restParts)
         }
@@ -119,7 +119,7 @@ class TailwindService(val project: Project) {
     }
   }
 
-  fun String.runCommand(workingDir: File) {
+  private fun String.runCommand(workingDir: File) {
     try {
       val command = this.split("#").toList()
       ProcessBuilder(command)

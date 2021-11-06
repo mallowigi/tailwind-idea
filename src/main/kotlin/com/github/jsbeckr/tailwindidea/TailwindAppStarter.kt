@@ -40,7 +40,7 @@ class TailwindAppStarter : ApplicationInitializedListener {
 
   @Throws(URISyntaxException::class, IOException::class)
   fun copyFromJar(source: String) {
-    val resource = javaClass.getResource("").toURI()
+    val resource = javaClass.getResource(source).toURI()
     try {
       val fileSystem = FileSystems.newFileSystem(
         resource, emptyMap<String, String>()

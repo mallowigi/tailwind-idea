@@ -109,14 +109,15 @@ class TailwindCompletionProvider : CompletionProvider<CompletionParameters>() {
   ) {
     var betterResultSet = result
     var activeProject: Project? = null
-    for (project in ProjectManager.getInstance().openProjects) {
-      val window = WindowManager.getInstance().suggestParentWindow(project)
-      if (window != null && window.isActive) {
-        activeProject = project
-      }
-    }
+//    for (project in ProjectManager.getInstance().openProjects) {
+//      val window = WindowManager.getInstance().suggestParentWindow(project)
+//      if (window != null && window.isActive) {
+//        activeProject = project
+//      }
+//    }
+    activeProject = parameters.position.project
 
-    val tailwindService = activeProject!!.service<TailwindService>()
+    val tailwindService = activeProject.service<TailwindService>()
     val classes = tailwindService.tailwindClasses
 
     val prefixes = betterResultSet.prefixMatcher.prefix.split(" ")
@@ -131,11 +132,13 @@ class TailwindCompletionProvider : CompletionProvider<CompletionParameters>() {
           if (children.size > 0) {
             val element = LookupElementBuilder.create(it.id).withTailText(":")
               .withTypeText(it.value).withInsertHandler(addColonInsertHandler)
+              .withIcon(TailwindIcons.Tailwind)
             val prioElement = PrioritizedLookupElement.withPriority(element, 2.0)
             betterResultSet.addElement(prioElement)
           } else {
             val element = LookupElementBuilder.create(it.id)
               .withTypeText(it.value)
+              .withIcon(TailwindIcons.Tailwind)
             betterResultSet.addElement(element)
           }
         }
