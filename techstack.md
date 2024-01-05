@@ -1,7 +1,8 @@
 <!--
---- Readme.md Snippet without images Start ---
+&lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
 mallowigi/tailwind-idea is built on the following main stack:
+
 - [Coveralls](https://coveralls.io/) – Code Coverage
 - [Mocha](http://mochajs.org/) – Javascript Testing Framework
 - [RequireJS](http://requirejs.org/) – Front End Package Manager
@@ -18,11 +19,13 @@ mallowigi/tailwind-idea is built on the following main stack:
 - [GitHub Actions](https://github.com/features/actions) – Continuous Integration
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet without images End ---
 
---- Readme.md Snippet with images Start ---
+&lt;--- Readme.md Snippet without images End ---&gt;
+
+&lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
 mallowigi/tailwind-idea is built on the following main stack:
+
 - <img width='25' height='25' src='https://img.stackshare.io/service/680/a43e4a04cb9f778842de43f95db59a14.png' alt='Coveralls'/> [Coveralls](https://coveralls.io/) – Code Coverage
 - <img width='25' height='25' src='https://img.stackshare.io/service/832/mocha.png' alt='Mocha'/> [Mocha](http://mochajs.org/) – Javascript Testing Framework
 - <img width='25' height='25' src='https://img.stackshare.io/service/852/1781835.png' alt='RequireJS'/> [RequireJS](http://requirejs.org/) – Front End Package Manager
@@ -39,14 +42,15 @@ mallowigi/tailwind-idea is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/11563/actions.png' alt='GitHub Actions'/> [GitHub Actions](https://github.com/features/actions) – Continuous Integration
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet with images End ---
+
+&lt;--- Readme.md Snippet with images End ---&gt;
 -->
 <div align="center">
 
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [mallowigi/tailwind-idea](https://github.com/mallowigi/tailwind-idea)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|41<br/>Tools used|11/19/23 <br/>Report generated|
+|41<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
